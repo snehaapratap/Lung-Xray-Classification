@@ -2,9 +2,9 @@ import sys
 from typing import List, Tuple, Optional
 from pymongo import MongoClient
 import gridfs
-from src.configuraion.mongodb_connection import MongoDBConnection
+from src.config.mongodb_connection import MongoDBConnection
 from src.constants import DATABASE_NAME
-from src.exception.expection import CustomException
+from src.exception.exception import CustomException
 
 
 class Image_Data:
