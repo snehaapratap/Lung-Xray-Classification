@@ -16,7 +16,7 @@ from src.entity.artifact_entity import (
     ModelTrainerArtifact,
 )
 from src.entity.config_entity import ModelTrainerConfig
-from src.exception.exception import CustomException
+from src.exception.expection import CustomException
 from src.logger.custom_logging import logging
 from src.model.arch import EfficientNetV2S
 
@@ -33,7 +33,7 @@ class ModelTrainer:
         logging.info("Entered the train method of Model trainer class")
         try:
             self.model.train()
-            pbar = tqdm(self.data_transformation_artifact.transformed_train_object)  
+            pbar = tqdm(self.data_transformation_artifact.transformed_train_object)  # to show progress bar
 
             correct: int = 0
 
@@ -118,9 +118,10 @@ class ModelTrainer:
     def initate_model_trainer(self):
         try:
             logging.info('Entered Initate Model trainer function')
-            model: Module = self.model.to(self.model_trainer_config.device)
+            model:Module=self.model.to(self.model_trainer_config.device)
 
             optimizer: Optimizer = torch.optim.Adam(model.parameters(), **self.model_trainer_config.optimizer_params)
+
 
             scheduler: _LRScheduler = StepLR(
                 optimizer=optimizer, **self.model_trainer_config.scheduler_params
@@ -131,28 +132,27 @@ class ModelTrainer:
 
                 self.train(optimizer=optimizer)
 
+                optimizer.step()
+
                 scheduler.step()
 
                 self.validation()
 
-        
             os.makedirs(self.model_trainer_config.artifact_dir, exist_ok=True)
+
             torch.save(model.state_dict(), self.model_trainer_config.trained_model_path)
 
-        
             train_transforms_obj = joblib.load(
                 self.data_transformation_artifact.train_transform_file_path
             )
 
-        
             bentoml.pytorch.save_model(
                 name=self.model_trainer_config.trained_bentoml_model_name,
                 model=model,
                 custom_objects={
-                    self.model_trainer_config.train_transforms_key: train_transforms_obj
+                    self.model_trainer_config.train_transforms_key:train_transforms_obj
                 }
             )
-
             model_trainer_artifact: ModelTrainerArtifact = ModelTrainerArtifact(
                 trained_model_path=self.model_trainer_config.trained_model_path
             )
@@ -164,8 +164,6 @@ class ModelTrainer:
             return model_trainer_artifact
 
         except Exception as e:
-            raise CustomException(e, sys)
-
-     
+            raise CustomException(e,sys)    
 
 
