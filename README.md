@@ -4,19 +4,6 @@ Welcome to the **Lung X-Ray Classification** project! This repository implements
 
 ---
 
-## 📖 Table of Contents
-- [Overview](#overview)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Pipeline Stages](#pipeline-stages)
-- [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
-- [License](#license)
-
----
-
 ## 🌟 Overview
 
 Chest X-rays are a critical diagnostic tool for detecting lung diseases like pneumonia. This project automates the process of classifying X-ray images using deep learning models, integrated with MLOps tools for seamless deployment and monitoring.
