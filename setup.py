@@ -15,7 +15,7 @@ def get_requirements(file_path: str) -> List[str]:
 setup(
     name="Lung-Xray",
     version='0.0.1',
-    author='Akash',
+    author='Sneha Pratap',
     author_email='snehapratap248@gmail.com',
      description="A small python package for ml app",
     package_dir={"": "src"},
