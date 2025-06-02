@@ -16,7 +16,7 @@ from src.entity.artifact_entity import (
     ModelTrainerArtifact,
 )
 from src.entity.config_entity import ModelTrainerConfig
-from src.exception.expection import CustomException
+from src.exception.exception import CustomException
 from src.logger.custom_logging import logging
 from src.model.arch import EfficientNetV2S
 

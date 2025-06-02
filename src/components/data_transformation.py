@@ -7,7 +7,7 @@ import joblib
 from torch.utils.data import DataLoader, Dataset
 from torchvision import transforms
 from torchvision.datasets import ImageFolder
-from src.exception.expection import CustomException
+from src.exception.exception import CustomException
 from src.logger.custom_logging import logging
 from src.entity.artifact_entity import DataIngestionArtifact,DataTransformationArtifact
 from src.entity.config_entity import DataTransformationConfig

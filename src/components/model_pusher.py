@@ -2,7 +2,7 @@ import os
 import sys
 
 from src.entity.artifact_entity import ModelTrainerArtifact
-from src.exception.expection import CustomException
+from src.exception.exception import CustomException
 from src.logger.custom_logging import logging
 from src.cloud_storage.aws_storage import S3Operation
 from src.constants import *
