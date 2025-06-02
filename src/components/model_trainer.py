@@ -42,8 +42,6 @@ class ModelTrainer:
             for batch_idx,(data,target)in enumerate(pbar):
                 data, target = data.to(DEVICE), target.to(DEVICE)
                 print(torch.unique(target))
-
-                # Initialization of gradient
                 optimizer.zero_grad()
 
                 y_pred=self.model(data)

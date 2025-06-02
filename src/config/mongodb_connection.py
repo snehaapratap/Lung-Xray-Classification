@@ -3,7 +3,7 @@ import sys
 import pymongo
 import certifi
 from pymongo.mongo_client import MongoClient
-from src.exception.expection import CustomException
+from src.exception.exception import CustomException
 from src.logger.custom_logging import logging
 from pymongo.server_api import ServerApi
 from src.constants import DATABASE_NAME

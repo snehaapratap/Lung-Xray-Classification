@@ -1,55 +1,83 @@
 from dotenv import load_dotenv
 from typing import List
 from datetime import datetime
-import os
-import torch
-
-# Load environment variables
+import os,torch
 load_dotenv()
+uri = os.getenv('MONGODB_URI')
 
-# MongoDB Configuration
-MONGODB_URI = os.getenv('MONGODB_URI')
-DATABASE_NAME = 'lung_xray_db'
-COLLECTION_NAME = "fs.files"
 
-# Timestamp for artifact versioning
+AWS_BUCKET_NAME='lung-xray-yt'
+MONGODB_URI=uri
+db_name='akash'
+DATABASE_NAME='lung_xray_db'
+DATA_INGESTION_TRAIN_TEST_SPLIT_RATIO=.20
+collection_name="fs.files"
+
 TIMESTAMP: datetime = datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
 
 # Data Ingestion Constants
-DATA_INGESTION_TRAIN_TEST_SPLIT_RATIO = 0.20
+ARTIFACT_DIR: str = "artifacts"
 
-# Data Transformation Constants
+
+# data trasnforamtion
 CLASS_LABEL_1: str = "NORMAL"
-CLASS_LABEL_2: str = "PNEUMONIA"
-BRIGHTNESS: float = 0.20
-CONTRAST: float = 0.20
-SATURATION: float = 0.25
-HUE: float = 0.1
-IMAGE_SHAPE = 224
-CENTERCROP: int = 224
-RANDOMROTATION: int = 30
-NORMALIZE_LIST_1: List[float] = [0.485, 0.456, 0.406]
-NORMALIZE_LIST_2: List[float] = [0.229, 0.224, 0.225]
 
-# Training Configuration
+CLASS_LABEL_2: str = "PNEUMONIA"
+
+BRIGHTNESS: int = 0.20
+
+CONTRAST: int = 0.20
+
+SATURATION: int = 0.25
+
+HUE: int = 0.1
+
+
+IMAGE_SHAPE = 224
+
+CENTERCROP: int = 224
+
+RANDOMROTATION: int = 30
+
+NORMALIZE_LIST_1: List[int] = [0.485, 0.456, 0.406]
+
+NORMALIZE_LIST_2: List[int] = [0.229, 0.224, 0.225]
+
+TRAIN_TRANSFORMS_KEY: str = "xray_train_transforms"
+
+TRAIN_TRANSFORMS_FILE: str = "train_transforms.pkl"
+
+VAL_TRANSFORMS_FILE: str = "validation_transforms.pkl"
+
 BATCH_SIZE: int = 8
+
 SHUFFLE: bool = True
+
 PIN_MEMORY: bool = True
-STEP_SIZE: int = 6
-GAMMA: float = 0.5
-EPOCH: int = 3
+
+
+
+
+
+TRAINED_MODEL_DIR: str = "model_training"
+
+TRAINED_MODEL_NAME: str = "model.pt"
+
 DEVICE: torch.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Artifact Directories
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ARTIFACTS_DIR = os.path.join(BASE_DIR, "artifacts")
-TRAINED_MODEL_PATH = os.path.join(ARTIFACTS_DIR, "trained_model.pth")
-TRAIN_TRANSFORMS_FILE: str = os.path.join(ARTIFACTS_DIR, "train_transforms.pkl")
-VAL_TRANSFORMS_FILE: str = os.path.join(ARTIFACTS_DIR, "validation_transforms.pkl")
+STEP_SIZE: int = 6
 
-# BentoML Configuration
-BENTOML_MODEL_NAME: str = "lung_xray_classifier"
+GAMMA: int = 0.5
+
+EPOCH: int = 3
+
+BENTOML_MODEL_NAME: str = "xray_model"
+
 BENTOML_SERVICE_NAME: str = "xray_service"
 
-# Prediction Labels
-PREDICTION_LABEL: dict = {"0": CLASS_LABEL_1, "1": CLASS_LABEL_2}
+BENTOML_ECR_URI: str = "lung-xray"
+
+PREDICTION_LABEL: dict = {"0": CLASS_LABEL_1, 1: CLASS_LABEL_2}
+
+
+AWS_Model_URI='s3://lung-xray-yt/model.pt'
