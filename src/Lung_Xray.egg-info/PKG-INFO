@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: Lung-Xray
+Version: 0.0.1
+Summary: A small python package for ml app
+Author: Akash
+Author-email: snehapratap248@gmail.com
+Dynamic: author
+Dynamic: author-email
+Dynamic: summary

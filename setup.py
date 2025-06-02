@@ -16,7 +16,7 @@ setup(
     name="Lung-Xray",
     version='0.0.1',
     author='Akash',
-    author_email='akashmukherjee0000@gmail.com',
+    author_email='snehapratap248@gmail.com',
      description="A small python package for ml app",
     package_dir={"": "src"},
     packages=find_packages(where="src")
