@@ -9,6 +9,7 @@ from src.logger.custom_logging import logger
 from src.exception.exception import CustomException
 
 
+
 class DataTransfromPipe:
     def __init__(self,data_ingestion_artifact: DataIngestionArtifact):
         self.data_transform_config = DataTransformationConfig()
