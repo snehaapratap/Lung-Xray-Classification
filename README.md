@@ -1,4 +1,4 @@
-# 🌟 Lung X-Ray Classification with MLOps 🚀
+# 🌟 Lung X-Ray Classification  🚀
 
 Welcome to the **Lung X-Ray Classification** project! This repository implements a machine learning pipeline to classify chest X-ray images into two categories: **NORMAL** and **PNEUMONIA**. The project is built with a focus on **MLOps** principles, ensuring scalability, reliability, and automation.
 
