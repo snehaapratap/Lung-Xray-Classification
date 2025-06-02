@@ -13,12 +13,16 @@ class DataIngestionConfig:
     def __init__(self):
         self.collection_name = collection_name
         self.train_test_split_ratio = DATA_INGESTION_TRAIN_TEST_SPLIT_RATIO
+        # self.training_image_dir = training_image_dir
+        # self.validation_image_dir = validation_image_dir
+        
         self.artifact_dir: str = os.path.join(ARTIFACT_DIR, TIMESTAMP,"data_ingestion")
+
+        # self.data_path: str = os.path.join(self.artifact_dir, "data_ingestion")
+
         self.train_data_path: str = os.path.join(self.artifact_dir, "train")
 
         self.val_data_path: str = os.path.join(self.artifact_dir, "validation")
-
-
 
 @dataclass
 class DataTransformationConfig:
@@ -60,6 +64,7 @@ class DataTransformationConfig:
             self.artifact_dir, VAL_TRANSFORMS_FILE
         )
 
+       
 @dataclass
 class ModelTrainerConfig:
     def __init__(self):
@@ -80,3 +85,22 @@ class ModelTrainerConfig:
         self.scheduler_params: dict = {"step_size": STEP_SIZE, "gamma": GAMMA}
 
         self.device: device = DEVICE
+
+        
+               
+@dataclass
+class ModelEvaluationConfig:
+    def __init__(self):
+        self.device: device = DEVICE
+
+        self.validation_loss: int = 0
+
+        self.validation_accuracy: int = 0
+
+        self.total: int = 0
+
+        self.total_batch: int = 0
+
+        self.optimizer_params: dict = {"lr": 0.0001,"weight_decay": 5e-4}                
+
+
